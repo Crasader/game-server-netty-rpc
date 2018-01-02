@@ -17,6 +17,7 @@ import main.java.com.nettyrpc.protocol.RpcRequest;
 import main.java.com.nettyrpc.protocol.RpcResponse;
 
 /**
+ * 类实现 RPC 客户端，只需扩展 Netty 提供的SimpleChannelInboundHandler抽象类即可
  * Created by luxiaoxun on 2016-03-14.
  */
 public class RpcClientHandler extends SimpleChannelInboundHandler<RpcResponse> {

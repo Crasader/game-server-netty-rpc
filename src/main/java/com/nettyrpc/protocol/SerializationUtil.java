@@ -3,23 +3,24 @@ package main.java.com.nettyrpc.protocol;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import javax.xml.validation.Schema;
-
 import org.objenesis.Objenesis;
 import org.objenesis.ObjenesisStd;
 
 import com.dyuproject.protostuff.LinkedBuffer;
 import com.dyuproject.protostuff.ProtostuffIOUtil;
+import com.dyuproject.protostuff.Schema;
 import com.dyuproject.protostuff.runtime.RuntimeSchema;
 
 /**
  * Serialization Util锛圔ased on Protostuff锛�
+ * 如需要替换其它序列化框架，只需修改SerializationUtil即可。
+ * 当然，更好的实现方式是提供配置项来决定使用哪种序列化方式
  * @author huangyong
  */
 public class SerializationUtil {
 
     private static Map<Class<?>, Schema<?>> cachedSchema = new ConcurrentHashMap<>();
-
+    //使用 Objenesis 来实例化对象，它是比 Java 反射更加强大。
     private static Objenesis objenesis = new ObjenesisStd(true);
 
     private SerializationUtil() {

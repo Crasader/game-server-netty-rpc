@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
  */
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-@Component
+@Component// 表明可被 Spring 扫描
 public @interface RpcService {
     Class<?> value();
 }

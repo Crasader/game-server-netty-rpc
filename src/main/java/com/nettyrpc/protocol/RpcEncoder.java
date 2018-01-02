@@ -6,6 +6,7 @@ import io.netty.handler.codec.MessageToByteEncoder;
 
 /**
  * RPC Encoder
+ * 使用RpcEncoder提供 RPC 编码，只需扩展 Netty 的MessageToByteEncoder抽象类的encode方法即可
  * @author huangyong
  */
 public class RpcEncoder extends MessageToByteEncoder {

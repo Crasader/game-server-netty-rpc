@@ -8,6 +8,7 @@ import io.netty.handler.codec.ByteToMessageDecoder;
 
 /**
  * RPC Decoder
+ * RpcDecoder提供 RPC 解码，只需扩展 Netty 的ByteToMessageDecoder抽象类的decode方法即可
  * @author huangyong
  */
 public class RpcDecoder extends ByteToMessageDecoder {

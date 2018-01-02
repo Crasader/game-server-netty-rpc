@@ -17,7 +17,7 @@ import main.java.com.nettyrpc.client.ConnectManage;
 
 /**
  * 服务发现
- *
+ * 使用 ZooKeeper 实现服务发现功能
  * @author huangyong
  * @author luxiaoxun
  */

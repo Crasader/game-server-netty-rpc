@@ -1,21 +1,5 @@
 package main.java.com.nettyrpc.server;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
-
-import javax.imageio.spi.ServiceRegistry;
-
-import org.apache.commons.collections4.MapUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.InitializingBean;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
-
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -25,13 +9,31 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+
+import javax.imageio.spi.ServiceRegistry;
+
 import main.java.com.nettyrpc.protocol.RpcDecoder;
 import main.java.com.nettyrpc.protocol.RpcEncoder;
 import main.java.com.nettyrpc.protocol.RpcRequest;
 import main.java.com.nettyrpc.protocol.RpcResponse;
 
+import org.apache.commons.collections4.MapUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+
 /**
  * RPC Server
+ * Netty 可实现一个支持 NIO 的 RPC 服务器，需要使用ServiceRegistry注册服务地址
  * @author huangyong,luxiaoxun
  */
 public class RpcServer implements ApplicationContextAware, InitializingBean {

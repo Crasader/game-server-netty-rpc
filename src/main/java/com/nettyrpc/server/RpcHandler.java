@@ -16,6 +16,8 @@ import net.sf.cglib.reflect.FastMethod;
 
 /**
  * RPC Handler（RPC request processor）
+ * 处理 RPC 请求，只需扩展 Netty 的SimpleChannelInboundHandler抽象类即可
+ *  Java 反射带来的性能问题，我们可以使用 CGLib 提供的反射 API，如上面用到的FastClass与FastMethod
  * @author luxiaoxun
  */
 public class RpcHandler extends SimpleChannelInboundHandler<RpcRequest> {
