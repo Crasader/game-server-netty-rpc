@@ -10,7 +10,7 @@ import io.netty.handler.codec.MessageToByteEncoder;
  * @author huangyong
  */
 public class RpcEncoder extends MessageToByteEncoder {
-
+	//需要编码成的类（对象）--->将对象根据编码方式进行序列化成字节数组
     private Class<?> genericClass;
 
     public RpcEncoder(Class<?> genericClass) {

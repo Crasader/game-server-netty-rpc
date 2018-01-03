@@ -1,3 +1,10 @@
+
+
+学习该nettyRpc项目进度：服务器部分已经看完，接下来要看客户端内容
+http://www.cnblogs.com/luxiaoxun/p/5272384.html
+https://my.oschina.net/huangyong/blog/361751------>看的这个网址的内容
+
+
 # NettyRpc
 An RPC framework based on Netty, ZooKeeper and Spring  
 中文详情：[Chinese Details](http://www.cnblogs.com/luxiaoxun/p/5272384.html)

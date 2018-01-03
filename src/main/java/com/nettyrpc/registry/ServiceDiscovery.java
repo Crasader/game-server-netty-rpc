@@ -24,7 +24,8 @@ import main.java.com.nettyrpc.client.ConnectManage;
 public class ServiceDiscovery {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ServiceDiscovery.class);
-
+    
+    //CountDownLatch是一个同步工具类，它允许一个或多个线程一直等待，直到其他线程的操作执行完后再执行。在Java并发中，countdownlatch的概念是一个常见的面试题，所以一定要确保你很好的理解了它
     private CountDownLatch latch = new CountDownLatch(1);
 
     private volatile List<String> dataList = new ArrayList<>();

@@ -13,7 +13,8 @@ import io.netty.handler.codec.ByteToMessageDecoder;
  */
 public class RpcDecoder extends ByteToMessageDecoder {
 
-    private Class<?> genericClass;
+	//需要解码成的类（对象）--->将序列化的数据解码成一个对象
+    private Class<?> genericClass;//generic:adj. 类的；一般的；属的；非商标的
 
     public RpcDecoder(Class<?> genericClass) {
         this.genericClass = genericClass;
