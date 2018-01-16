@@ -19,7 +19,7 @@ import com.dyuproject.protostuff.runtime.RuntimeSchema;
  */
 public class SerializationUtil {
 
-    private static Map<Class<?>, Schema<?>> cachedSchema = new ConcurrentHashMap<>();
+    private static Map<Class<?>, Schema<?>> cachedSchema = new ConcurrentHashMap<>();//ConcurrentHashMap是适用于高并发的Map数据结构
     //使用 Objenesis 来实例化对象，它是比 Java 反射更加强大。
     private static Objenesis objenesis = new ObjenesisStd(true);
 
@@ -40,17 +40,17 @@ public class SerializationUtil {
 
     /**
      * 搴忓垪鍖栵紙瀵硅薄 -> 瀛楄妭鏁扮粍锛�
-     * 讲对象按照编码方式序列化成字节数组
+     * 将对象按照编码方式序列化成字节数组
      */
     @SuppressWarnings("unchecked")
     public static <T> byte[] serialize(T obj) {
         Class<T> cls = (Class<T>) obj.getClass();//获得对象的类；
         LinkedBuffer buffer = LinkedBuffer.allocate(LinkedBuffer.DEFAULT_BUFFER_SIZE);//使用LinkedBuffer分配一块默认大小的buffer空间；
         try {
-            Schema<T> schema = getSchema(cls);//通过对象的类构建对应的schema；
+        	Schema<T> schema = getSchema(cls);//通过对象的类构建对应的schema；
             
-//            ByteArrayOutputStream outputStream=new ByteArrayOutputStream();
-//            ProtostuffIOUtil.writeTo(outputStream,obj,schema,buffer);
+//          ByteArrayOutputStream outputStream=new ByteArrayOutputStream();
+//          ProtostuffIOUtil.writeTo(outputStream,obj,schema,buffer);
             
             return ProtostuffIOUtil.toByteArray(obj, schema, buffer);//使用给定的schema将对象序列化为一个byte数组，并返回。
         } catch (Exception e) {
@@ -67,7 +67,7 @@ public class SerializationUtil {
     @SuppressWarnings("unchecked")
 	public static <T> T deserialize(byte[] data, Class<T> cls) {
         try {
-            T message = (T) objenesis.newInstance(cls);//使用 Objenesis 来实例化对象，它是比 Java 反射更加强大。
+            T message = (T) objenesis.newInstance(cls);//使用 Objenesis 来实例化对象，它是比 Java 反射更加强大。(优点就是支持没有提供默认构造函数的java类的实例化)
             Schema<T> schema = getSchema(cls);//Schema:模式；计划；图解；概要--->通过对象的类构建对应的schema；
             ProtostuffIOUtil.mergeFrom(data, message, schema);//使用给定的schema将byte数组和对象合并，并返回。
             return message;
