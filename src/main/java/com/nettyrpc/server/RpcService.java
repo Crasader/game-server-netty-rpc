@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
  */
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-@Component// �����ɱ� Spring ɨ��
+@Component//把普通pojo实例化到spring容器中，相当于配置文件中的<bean id="" class=""/>
 public @interface RpcService {
     Class<?> value();
 }
