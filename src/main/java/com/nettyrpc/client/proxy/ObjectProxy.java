@@ -13,6 +13,7 @@ import main.java.com.nettyrpc.client.RpcClientHandler;
 import main.java.com.nettyrpc.protocol.RpcRequest;
 
 /**
+ * 通过代理调用实际对象的响应方法，获得结果！
  * Created by luxiaoxun on 2016-03-16.
  */
 public class ObjectProxy<T> implements InvocationHandler, IAsyncObjectProxy {
@@ -58,6 +59,8 @@ public class ObjectProxy<T> implements InvocationHandler, IAsyncObjectProxy {
 
         RpcClientHandler handler = ConnectManage.getInstance().chooseHandler();
         RPCFuture rpcFuture = handler.sendRequest(request);
+        
+//        RPCFuture rpcFuture1 = call(method.getName(), args);
         return rpcFuture.get();
     }
 
