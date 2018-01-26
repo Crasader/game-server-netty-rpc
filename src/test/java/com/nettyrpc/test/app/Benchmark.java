@@ -25,7 +25,7 @@ public class Benchmark {
                 @Override
                 public void run() {
                     for (int i = 0; i < requestNum; i++) {
-                        final HelloService syncClient = rpcClient.create(HelloService.class);
+                        final HelloService syncClient = rpcClient.create(HelloService.class);//获得被执行接口类的代理类对象
                         String result = syncClient.hello(Integer.toString(i));
                         if (!result.equals("Hello! " + i))
                             System.out.print("error = " + result);
