@@ -28,12 +28,17 @@ public class RpcClient {
         this.serviceDiscovery = serviceDiscovery;
     }
 
+    /**
+     * 创建代理对象
+     * @param interfaceClass
+     * @return
+     */
     @SuppressWarnings("unchecked")
     public static <T> T create(Class<T> interfaceClass) {
         return (T) Proxy.newProxyInstance(
-                interfaceClass.getClassLoader(),
-                new Class<?>[]{interfaceClass},
-                new ObjectProxy<T>(interfaceClass)
+                interfaceClass.getClassLoader(),//类加载器（java的动态代理会动态（在运行时）生成代理对象的class文件），故需要类加载器加载class文件
+                new Class<?>[]{interfaceClass},//需要代理的接口类
+                new ObjectProxy<T>(interfaceClass)//处理的handler（实现了InvocationHandler），将会调用invoke方法进行远程调用
         );
     }
 

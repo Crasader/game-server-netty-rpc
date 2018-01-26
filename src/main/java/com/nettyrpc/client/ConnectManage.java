@@ -29,7 +29,6 @@ import io.netty.channel.socket.nio.NioSocketChannel;
  * Created by luxiaoxun on 2016-03-16.
  */
 public class ConnectManage {
-
     private static final Logger LOGGER = LoggerFactory.getLogger(ConnectManage.class);
     private volatile static ConnectManage connectManage;
 
@@ -40,10 +39,11 @@ public class ConnectManage {
     private Map<InetSocketAddress, RpcClientHandler> connectedServerNodes = new ConcurrentHashMap<>();
     //private Map<InetSocketAddress, Channel> connectedServerNodes = new ConcurrentHashMap<>();
 
-    private ReentrantLock lock = new ReentrantLock();
-    private Condition connected = lock.newCondition();
+    //Lock,那是对synchronized的一种更为面向对象的替代,在原来的synchronized内部,我们可以调用object的wait与notify方法,那么使用lock之后,如何进行线程的通信呢。答案是condition。
+    private ReentrantLock lock = new ReentrantLock();//重入锁；详情未看(实现加锁--》原子性)
+    private Condition connected = lock.newCondition();//实现线程的通信
     protected long connectTimeoutMillis = 6000;
-    private AtomicInteger roundRobin = new AtomicInteger(0);
+    private AtomicInteger roundRobin = new AtomicInteger(0);//atomic包里面主要是对基本数据类型如int,float,boolean等的原子封装
     private volatile boolean isRuning = true;
 
     private ConnectManage() {
@@ -60,6 +60,10 @@ public class ConnectManage {
         return connectManage;
     }
 
+    /**
+     * 添加新的serverNdoe，清楚掉已經關閉的serverNdoe
+     * @param allServerAddress
+     */
     public void updateConnectedServer(List<String> allServerAddress) {
         if (allServerAddress != null) {
             if (allServerAddress.size() > 0) {  // Get available server node

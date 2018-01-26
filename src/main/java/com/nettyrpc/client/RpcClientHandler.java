@@ -23,7 +23,7 @@ import main.java.com.nettyrpc.protocol.RpcResponse;
 public class RpcClientHandler extends SimpleChannelInboundHandler<RpcResponse> {
     private static final Logger LOGGER = LoggerFactory.getLogger(RpcClientHandler.class);
 
-    private ConcurrentHashMap<String, RPCFuture> pendingRPC = new ConcurrentHashMap<>();
+    private ConcurrentHashMap<String, RPCFuture> pendingRPC = new ConcurrentHashMap<>();//线程安全的
 
     private volatile Channel channel;
     private SocketAddress remotePeer;

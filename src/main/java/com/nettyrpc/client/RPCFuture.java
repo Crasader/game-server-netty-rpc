@@ -16,6 +16,7 @@ import main.java.com.nettyrpc.protocol.RpcRequest;
 import main.java.com.nettyrpc.protocol.RpcResponse;
 
 /**
+ * 可以获取返回值的	线程。。。
  * RPCFuture for async RPC call
  * Created by luxiaoxun on 2016-03-15.
  */

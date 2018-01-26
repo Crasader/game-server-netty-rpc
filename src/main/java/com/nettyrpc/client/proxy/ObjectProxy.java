@@ -60,7 +60,6 @@ public class ObjectProxy<T> implements InvocationHandler, IAsyncObjectProxy {
         RpcClientHandler handler = ConnectManage.getInstance().chooseHandler();
         RPCFuture rpcFuture = handler.sendRequest(request);
         
-//        RPCFuture rpcFuture1 = call(method.getName(), args);
         return rpcFuture.get();
     }
 

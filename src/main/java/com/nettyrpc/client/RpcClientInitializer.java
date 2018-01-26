@@ -11,6 +11,7 @@ import main.java.com.nettyrpc.protocol.RpcRequest;
 import main.java.com.nettyrpc.protocol.RpcResponse;
 
 /**
+ * 初始化管道的組件
  * Created by luxiaoxun on 2016-03-16.
  */
 public class RpcClientInitializer extends ChannelInitializer<SocketChannel> {
