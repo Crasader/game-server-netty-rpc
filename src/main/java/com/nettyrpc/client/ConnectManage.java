@@ -163,12 +163,17 @@ public class ConnectManage {
     private boolean waitingForHandler() throws InterruptedException {
         lock.lock();
         try {
+        	//await让线程等待，直到有返回值
             return connected.await(this.connectTimeoutMillis, TimeUnit.MILLISECONDS);
         } finally {
             lock.unlock();
         }
     }
 
+    /**
+     * 获取节点处的处理器
+     * @return
+     */
     public RpcClientHandler chooseHandler() {
         CopyOnWriteArrayList<RpcClientHandler> handlers = (CopyOnWriteArrayList<RpcClientHandler>) this.connectedHandlers.clone();
         int size = handlers.size();
@@ -184,7 +189,7 @@ public class ConnectManage {
                 throw new RuntimeException("Can't connect any servers!", e);
             }
         }
-        int index = (roundRobin.getAndAdd(1) + size) % size;
+        int index = (roundRobin.getAndAdd(1) + size) % size;//循环生成0--》size-1之间的一个索引数字
         return handlers.get(index);
     }
 

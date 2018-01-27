@@ -11,8 +11,8 @@ public class Benchmark {
 
     public static void main(String[] args) throws InterruptedException {
 
-        ServiceDiscovery serviceDiscovery = new ServiceDiscovery("127.0.0.1:2181");
-        final RpcClient rpcClient = new RpcClient(serviceDiscovery);
+        ServiceDiscovery serviceDiscovery = new ServiceDiscovery("127.0.0.1:2181");//创建服务发现类，连接相应地址节点的zookeeper
+        final RpcClient rpcClient = new RpcClient(serviceDiscovery);//finla修饰，则为不可变变量，已经被初始化
 
         int threadNum = 10;
         final int requestNum = 100;

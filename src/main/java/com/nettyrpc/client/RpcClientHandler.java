@@ -69,7 +69,7 @@ public class RpcClientHandler extends SimpleChannelInboundHandler<RpcResponse> {
     }
 
     public RPCFuture sendRequest(RpcRequest request) {
-        final CountDownLatch latch = new CountDownLatch(1);
+        final CountDownLatch latch = new CountDownLatch(1);//是一个同步工具类，它允许一个或多个线程一直等待，直到其他线程的操作执行完后再执行。
         RPCFuture rpcFuture = new RPCFuture(request);
         pendingRPC.put(request.getRequestId(), rpcFuture);
         channel.writeAndFlush(request);
